@@ -1,4 +1,12 @@
-// Assignment code here
+// Module 3. Challenge
+
+var generatePassword = function() {
+  var lowerCase = window.prompt("In your password, would you like lower case characters?");
+  console.log(lowerCase);
+};
+
+
+
 
 
 // Get references to the #generate element
