@@ -70,7 +70,6 @@ function generatePassword() {
 
     // Loop this multiple times to generate array of random characters
     var temp = new Array();
-    debugger;
     for (var i = 0; i < passwordLength; i++) {
     randomNumber = Math.floor(Math.random() * 74);
     numArray = chosenChars[randomNumber];
