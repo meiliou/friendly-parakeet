@@ -3,32 +3,13 @@
 // --------- Game Info/Variables --------- //
 
 // character options
-/*var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+var lowerChars = "abcdefghijklmnopqrstuvwxyz";
 var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numbericChars = "0123456789";
-var specialChars = "!@#$%^&*()_+";*/
+var numericChars = "0123456789";
+var specialChars = "!@#$%^&*()_+";
 var chosenChars = "";
-var typesArr = "";
+var numArray = "";
 var randomNumber = "";
-
-var passwordOptions = [ 
-  {
-    name: "lowercase letters", 
-    characters: "abcdefghijklmnopqrstuvwxyz"
-  },
-  {
-    name: "uppercase letters", 
-    characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  },
-  {
-    name: "numbers", 
-    characters: "0123456789"
-  },
-  {
-    name: "special characters", 
-    characters: "!@#$%^&*()_+"
-  }
-];
 
 
 // Get references to the #generate element
@@ -41,7 +22,7 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// generate password
+// Generate password
 
 function generatePassword() {
   // window prompt so user can decide password length
@@ -55,47 +36,47 @@ function generatePassword() {
     generatePassword();
   }
  
-  var chooseOptions = function () {
     // prompts to select character types
-    var choice = window.confirm("Would you like any " + passwordOptions.name[i] +  " in your password?");
-    if (choice) {
-      window.alert("adding " + passwordOptions.name[i]+ " to your password");
+    var upperChoice = window.confirm("Would you like uppercase letters in your password?");
+    if (upperChoice) {
+      window.alert("adding uppercase letters to your password");
+      chosenChars = chosenChars + upperChars;
+      console.log(chosenChars);
+    }
+    var lowerChoice = window.confirm("Would you like lowercase letters in your password?");
+    if (lowerChoice) {
+      window.alert("adding lowercase letters to your password");
       chosenChars = chosenChars + lowerChars;
       console.log(chosenChars);
     }
-    // aaaargh
-    for (var i = 0; i < passwordOptions.length; i++) {
-    var pickedOption = passwordOptions[i];
-    chooseOptions(pickedOption.name[i]);
-    console.log(pickedOption.name[i]);
+    var numericChoice = window.confirm("Would you like numbers in your password?");
+    if (numericChoice) {
+      window.alert("adding number to your password");
+      chosenChars = chosenChars + numericChars;
+      console.log(chosenChars);
     }
+    var specialChoice = window.confirm("Would you like special characters in your password?");
+    if (specialChoice) {
+      window.alert("adding special characters to your password");
+      chosenChars = chosenChars + specialChars;
+      console.log(chosenChars);
+    }
+    if (chosenChars) {
+      window.alert("okay, let's generate a password...");
+    }
+    else {
+      window.alert("please add SOMETHING... ANYTHING!");
+    }
+
+    var temp = new Array();
+    for (var i = 0; i < passwordLength; i++) {
+    randomNumber = Math.floor(Math.random() * chosenChars.length);
+    numArray = chosenChars[randomNumber];
+    temp.push(numArray);
+    }
+    password = temp.join("");
+    return password;
   }
-  chooseOptions();
-
-}
-
-/*
-// --------- Confirm Criteria --------- //
-
-var confirmCriteria = function() {
-  // ask if they'd like to add criteria.type
-  var promptCriteria = window.prompt("Would you like to add " + criteria[i] + " ? Enter 'yes' or 'no' to choose.");
-
-
-// ----- Run and Remember Criteria choices ----- //
-var runCriteria = function () {
-  for (var i = 0; i < criteria.length; i++) {
-    var pickedCriteriaObj = criteria[i];
-    console.log(pickedCriteriaObj);
-    confirmCriteria(pickedCriteriaObj);    
-    // console.log(criteria[i]);
-  };
-};
-
-
-// --------- Generate Password --------- //
-*/
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
