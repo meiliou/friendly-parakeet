@@ -3,10 +3,10 @@
 // --------- Game Info/Variables --------- //
 
 // character options
-var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+/*var lowerChars = "abcdefghijklmnopqrstuvwxyz";
 var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbericChars = "0123456789";
-var specialChars = "!@#$%^&*()_+";
+var specialChars = "!@#$%^&*()_+";*/
 var chosenChars = "";
 var typesArr = "";
 var randomNumber = "";
@@ -27,7 +27,7 @@ var passwordOptions = [
   {
     name: "special characters", 
     characters: "!@#$%^&*()_+"
-  },
+  }
 ];
 
 
@@ -64,10 +64,11 @@ function generatePassword() {
       console.log(chosenChars);
     }
     // aaaargh
-    for (var i = 0; i < passwordOptions.length; i++);
-
+    for (var i = 0; i < passwordOptions.length; i++) {
     var pickedOption = passwordOptions[i];
-    pickedOption
+    chooseOptions(pickedOption.name[i]);
+    console.log(pickedOption.name[i]);
+    }
   }
   chooseOptions();
 
