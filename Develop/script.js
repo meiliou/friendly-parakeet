@@ -1,9 +1,40 @@
 // Module 3. Challenge
 
-var generatePassword = function() {
-  var lowerCase = window.prompt("In your password, would you like lower case characters?");
-  console.log(lowerCase);
+
+window.alert("Please select what characters you'd like to include in your password"); //check window working
+
+// loop through list of criteria
+
+// function to check which criteria user wants to add
+var confirmCriteria = function() {
+  // ask if they'd like xyz
+  var promptCriteria = window.prompt("Would you like to add xyz? Enter 'yes' or 'no' to choose.");
+  
+  // validate prompt answer
+  if (promptCriteria === "" || promptCriteria === null) {
+    window.alert("Please respond with 'yes' or 'no'.");
+    return confirmCriteria();
+  }    
+
+  // convert to lower case so less options to check
+  promptCriteria = promptCriteria.toLowerCase();  
+
+  // returns true if user says yes
+  if (promptCriteria === "yes") {
+    console.log("yep");
+    return true;
+  }
+  if (promptCriteria === "no") {
+    console.log("nope");
+    return false;
+  }
+  else {
+    console.log("respond");
+    return confirmCriteria();
+  }
 };
+confirmCriteria();
+
 
 
 
