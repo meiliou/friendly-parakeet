@@ -68,12 +68,15 @@ function generatePassword() {
       window.alert("please add SOMETHING... ANYTHING!");
     }
 
+    // Loop this multiple times to generate array of random characters
     var temp = new Array();
+    debugger;
     for (var i = 0; i < passwordLength; i++) {
-    randomNumber = Math.floor(Math.random() * chosenChars.length);
+    randomNumber = Math.floor(Math.random() * 74);
     numArray = chosenChars[randomNumber];
     temp.push(numArray);
     }
+    // Returns the array into a string
     password = temp.join("");
     return password;
   }
