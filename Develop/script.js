@@ -1,16 +1,37 @@
-// Module 3. Challenge - Random password generator
+// *********************************************** //
+// Module 3. Challenge - Random password generator //
+// *********************************************** //
 
-// --------- Game Info/Variables --------- //
+// ********************************************* //
+// ---------------- Variables ------------------ //
+// ********************************************* //
 
-// character options
-var lowerChars = "abcdefghijklmnopqrstuvwxyz";
-var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numericChars = "0123456789";
-var specialChars = "!@#$%^&*()_+";
 var chosenChars = "";
 var numArray = "";
 var randomNumber = "";
 
+var charInfo = [
+  {
+    type: "upper case letters",
+    characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  },
+  {
+    type: "lower case letters",
+    characters: "abcdefghijklmnopqrstuvwxyz"
+  },
+  {
+    type: "numbers",
+    characters: "0123456789"
+  },
+  {
+    type: "special characters",
+    characters: "!@#$%^&*()_+"
+  }
+];
+
+// ********************************************* //
+// ---------- Pass-through functions ----------- //
+// ********************************************* //
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -21,8 +42,12 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
-// Generate password
+// ********************************************* //
+// ------------- Generate Password ------------- //
+// ********************************************* //
 
 function generatePassword() {
   // window prompt so user can decide password length
@@ -35,50 +60,42 @@ function generatePassword() {
     window.alert("Please pick a number between 8 and 128");
     generatePassword();
   }
- 
-    // prompts to select character types
-    var upperChoice = window.confirm("Would you like uppercase letters in your password?");
-    if (upperChoice) {
-      window.alert("adding uppercase letters to your password");
-      chosenChars = chosenChars + upperChars;
-      console.log(chosenChars);
-    }
-    var lowerChoice = window.confirm("Would you like lowercase letters in your password?");
-    if (lowerChoice) {
-      window.alert("adding lowercase letters to your password");
-      chosenChars = chosenChars + lowerChars;
-      console.log(chosenChars);
-    }
-    var numericChoice = window.confirm("Would you like numbers in your password?");
-    if (numericChoice) {
-      window.alert("adding number to your password");
-      chosenChars = chosenChars + numericChars;
-      console.log(chosenChars);
-    }
-    var specialChoice = window.confirm("Would you like special characters in your password?");
-    if (specialChoice) {
-      window.alert("adding special characters to your password");
-      chosenChars = chosenChars + specialChars;
-      console.log(chosenChars);
-    }
-    if (chosenChars) {
-      window.alert("okay, let's generate a password...");
-    }
-    else {
-      window.alert("please add SOMETHING... ANYTHING!");
-    }
 
-    // Loop this multiple times to generate array of random characters
-    var temp = new Array();
-    for (var i = 0; i < passwordLength; i++) {
+  // loops through various prompts to select character types
+  for (var i = 0; i < charInfo.length; i++) {
+    // create new variable to loop through window.prompts
+    var charType = charInfo[i].type;
+    console.log(charType);
+    var choice = window.confirm("Would you like " + charType +  " in your password?");
+    if (choice) {
+      // alert to let user know that specific character set has been added
+      window.alert("adding " + charType + " to your password");
+      // adds each additional set of characters to the chosen characters list
+      var characters = charInfo[i].characters;
+      chosenChars = chosenChars + characters;
+      console.log(chosenChars);
+    }
+  }
+  // if the set is not empty, alert to say password is generating
+  if (chosenChars) {
+    window.alert("Okay, let's generate a password...");
+  }
+  // otherwise ask user to please choose something to add to the list, reruns whole function
+
+  else {
+    window.alert("please add SOMETHING... ANYTHING!");
+    generatePassword();
+  }
+
+  // Loop this multiple times to generate array of random characters
+  var temp = new Array();
+  for (var i = 0; i < passwordLength; i++) {
     randomNumber = Math.floor(Math.random() * 74);
     numArray = chosenChars[randomNumber];
     temp.push(numArray);
-    }
-    // Returns the array into a string
-    password = temp.join("");
-    return password;
   }
+  // Returns the array into a string
+  password = temp.join("");
+  return password;
+};
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
