@@ -8,6 +8,12 @@ Website: meiliou.github.io/friendly-parakeet/
 
 ## Screenshot
 
+![image](https://user-images.githubusercontent.com/83768277/219946040-083a77a3-bacd-46c5-8d29-b16532034e91.png)
+
+## Coding Notes
+
+I had many false starts and possibly complicated my life unnecessarily. I reverted to using duplicate if statements but decided this was simply unacceptable. The big neon DRY sign was flashing overhead and I finally managed to get the code optimised - well at least as far as my abilities will allow!
+
 
 ## User Story
 
